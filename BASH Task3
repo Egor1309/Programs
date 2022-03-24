@@ -1,0 +1,18 @@
+x=int(input("Enter line: "))
+
+def print_stars(i,n):
+    if i:
+        print( ' '*(n-i-1)  + '*' + ' '*(2*i-1) + '*')
+    else:
+        print( ' '*(n-1)  + '*')
+
+# recursive
+def r(n, i=0):
+    print_stars(i,n) # up
+    if i<n-1:
+        r(n, i+1) # recurse
+        print_stars(i,n) # down
+
+
+# start
+r(x)
