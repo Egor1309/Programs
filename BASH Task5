@@ -1,0 +1,15 @@
+#!/bin/bash
+echo “Напишите название файла, на основе которого, будет сделана ведомость”
+read file
+text=$file
+time=$(date +”$%d-%m-%y”) 
+name=”Ведомость_”$time”_”$text””
+touch $name
+group=${file:0:5}
+echo “1Дата:$time; гр.$group|” >> $name
+echo “1Фамилия|                    |Оценка|                    |Подпись|”
+while read line
+do
+echo $line >> $name
+sort -o $name $name
+done < $text
