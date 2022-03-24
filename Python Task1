@@ -1,0 +1,13 @@
+#Deposit amount including interest
+
+print("Enter the deposit amount")
+print("Enter the number of months")
+print("Enter the percentages")
+deposit = int(input())
+months = int(input())
+percentages = int(input())
+i = months
+while i > 0:
+    deposit += deposit * percentages
+    i -= 1
+print(deposit)
