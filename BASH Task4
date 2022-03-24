@@ -1,0 +1,39 @@
+#!/bin/bash
+echo “Этот скрипт генерирует адрес электронной почты, на основе вашей фамилии и имени”
+while :
+do
+echo “Введите вашу фамилию”
+read familie
+echo “Введите ваше имя”
+read name
+if [[ “$familie” =~ [a-z] && “$name” = ~ [a-z] ]]
+then
+echo “Ваш адрес электронной почты”
+email=${familie:0:3}${name:0:3}${RANDOM:0:3}”@fa.ru”
+echo $email
+else
+echo “Ошибка, введите фамилию и имя маленькими латинскими буквами”
+continue
+fi
+echo “Если адрес электронной почты вас устраивает, напишите Yes, если нет, напишите No”
+read answer
+if [ “$answer” == “Yes” ]
+then
+if grep “$email” fa_mail.log.txt
+then
+echo “Просим прощения, но к сожалению такой адрес уже существует, создадим новый адрес”
+continue
+else
+echo “$email” >> fa_mail.log.txt
+echo “Хорошо, созданный адрес будет добавлен в файл fa_mail.log.txt”
+break
+fi
+elif [ “$answer” == “No” ]
+then
+echo “Сгенерируем ваш электронный адрес снова”
+continue
+else
+echo “Ошибка, введите определенный ответ”
+continue
+fi
+done
